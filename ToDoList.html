@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What To Do</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="planbody">
+
+    <header class="header">
+
+        <a href="#" class="one">Pearl of <br> the Indian Ocean</a>
+    
+        <nav class="navbar">
+            <a href="main.html">home</a>
+            <a href="explore.html" >Explore</a>
+            <a href="Festivals.html" >Festivals </a>
+            <a href="ToDoList.html" >What To Do</a>
+            <a href="about.html">about</a>
+            <a href="contact.html">contact</a>
+        </nav>
+    
+    
+    </header>
+    
+  <div class="todo">
+    <div id="app" class="container">
+
+        <h1 class="app-head"> Add Your Plan </h1>
+        
+        <div v-if="isediting" class="task-input">
+
+        <input type="text" v-model="todo">
+        <input type="text" value="add" @click="storetodo">
+
+        </div>
+
+        <div v-else>
+
+            <input type="text" v-model="todo" placeholder="Start your journey" class="task-input">
+            <button @click="addtodo" class="btn" >ADD</button>
+            
+            </div>
+
+            
+            <div class="seel">
+        <ol>
+            <li v-for='(todo, index) in todos'>
+
+
+                {{todo}}
+                <button @click="deletetodo(index)" class="todobtn">
+                    <i class="fa fa-trash"></i> Delete
+                </button>
+                    
+           
+
+            </li>
+        </ol>
+
+    </div>
+</div>
+  </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <script>
+
+         new Vue({
+             el: '#app',
+
+             data:{
+                 isediting:false,
+                 todo:'',
+                 todos:[]
+             },
+
+             methods:{
+                 storetodo(){
+                     this.todos.push(this.todo)
+                     this.todo=''
+                 },
+
+                 addtodo(){
+                       this.todos.push(this.todo)
+                 },
+
+                 deletetodo(index){
+                     this.todos.splice(index,1)
+                 }
+             }
+         })
+
+    </script>
+
+
+</body>
+</html>
